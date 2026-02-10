@@ -198,7 +198,7 @@ public final class StageClearResultPanel {
                 if (replayCursor == 0) {
                     return new Result(Result.KIND_BACK_TO_TITLE);
                 }
-                enterFinalReplaySlotScene();
+                enterReplaySlotScene(SCENE_FINAL_REPLAY_SLOT);
             }
             return null;
         }
@@ -216,10 +216,10 @@ public final class StageClearResultPanel {
             }
         } else if (scene == SCENE_FINAL_REPLAY_OK || scene == SCENE_FINAL_REPLAY_FAIL) {
             if ((pressed & GameCore.FIRE_PRESSED) != 0) {
-                enterFinalReplaySlotScene();
+                enterReplaySlotScene(SCENE_FINAL_REPLAY_SLOT);
             }
             if ((pressed & GameCore.GAME_A_PRESSED) != 0) {
-                enterFinalReplaySlotScene();
+                enterReplaySlotScene(SCENE_FINAL_REPLAY_SLOT);
             }
         }
 
@@ -263,7 +263,7 @@ public final class StageClearResultPanel {
                     }
                     leaving = true;
                 } else if (allowReplaySave && (pressed & GameCore.KEY_POUND_PRESSED) != 0) {
-                    enterReplaySlotScene();
+                    enterReplaySlotScene(SCENE_REPLAY_SLOT);
                 }
             }
         } else if (scene == SCENE_REPLAY_SLOT) {
@@ -278,7 +278,7 @@ public final class StageClearResultPanel {
             }
         } else if (scene == SCENE_REPLAY_OK || scene == SCENE_REPLAY_FAIL) {
             if ((pressed & (GameCore.FIRE_PRESSED | GameCore.GAME_A_PRESSED)) != 0) {
-                enterReplaySlotScene();
+                enterReplaySlotScene(SCENE_REPLAY_SLOT);
             }
         }
 
@@ -358,18 +358,6 @@ public final class StageClearResultPanel {
         }
     }
 
-    private void enterFinalReplaySlotScene() {
-        scene = SCENE_FINAL_REPLAY_SLOT;
-
-        if (replayCursor < 0) {
-            replayCursor = 0;
-        }
-        if (replayCursor >= ReplayRmsStore.SLOT_COUNT) {
-            replayCursor = ReplayRmsStore.SLOT_COUNT - 1;
-        }
-
-        ReplaySaveUi.loadAllSlots(slotHeaders, slotNames, tmpFull, tmpBoss);
-    }
 
     private void renderFinalReplayOverlay(Graphics g, BulletSprites sprites) {
         // Replay overlay for final result.
@@ -386,13 +374,11 @@ public final class StageClearResultPanel {
                 UiDraw.drawString2(g, FONT, UiText.get(TextId.STAGECLEAR_SAVE_NO), 120, baseY + 40, 1, 0x777777, 0x222222);
                 UiDraw.drawString2(g, FONT, UiText.get(TextId.STAGECLEAR_SAVE_YES), 120, baseY + 60, 1, 0xFFFFFF, 0x444444);
             }
-            // Removed bottom key hint text.
             return;
         }
 
         if (scene == SCENE_FINAL_REPLAY_SLOT || scene == SCENE_FINAL_REPLAY_OK || scene == SCENE_FINAL_REPLAY_FAIL) {
             ReplaySaveUi.renderSlotListFinal(g, FONT, replayCursor, slotHeaders, UiText.get(TextId.COMMON_SLOT_PREFIX));
-            // Removed bottom key hint text.
         }
 
         if (scene == SCENE_FINAL_REPLAY_OK || scene == SCENE_FINAL_REPLAY_FAIL) {
@@ -626,8 +612,8 @@ public final class StageClearResultPanel {
         UiDraw.drawString2(g, FONT, spellBonusCount + "/" + spellSeenCount, 174, 152, 2, 0xAAAAAA, 0x333333);
     }
 
-    private void enterReplaySlotScene() {
-        scene = SCENE_REPLAY_SLOT;
+    private void enterReplaySlotScene(int targetScene) {
+        scene = targetScene;
 
         if (replayCursor < 0) {
             replayCursor = 0;
@@ -647,26 +633,10 @@ public final class StageClearResultPanel {
 
         renderReplayListBackgroundOrFallback(g, sprites);
         ReplaySaveUi.renderSlotListCompact(g, FONT, replayCursor, slotHeaders, UiText.get(TextId.COMMON_SLOT_PREFIX));
-        // Removed bottom key hint text.
 
         if (scene == SCENE_REPLAY_OK || scene == SCENE_REPLAY_FAIL) {
             ReplaySaveUi.renderSaveResultBox(g, FONT, scene == SCENE_REPLAY_OK, 104);
         }
-    }
-
-    static void renderTechnoGreenOverlayBackground(Graphics g) {
-        if (g == null) {
-            return;
-        }
-        g.setColor(0x000000);
-        g.fillRect(0, 0, 240, 240);
-
-        g.setColor(0x005500);
-        g.drawRect(3, 3, 234, 234);
-        g.setColor(0x00AA00);
-        g.drawRect(6, 6, 228, 228);
-        g.setColor(0x00FF00);
-        g.drawRect(9, 9, 222, 222);
     }
 
     static void renderReplayListBackgroundOrFallback(Graphics g, BulletSprites sprites) {
@@ -681,7 +651,8 @@ public final class StageClearResultPanel {
             UiDraw.drawRegion(g, bg, 0, 0, 0, 0, 240, 240);
             UiDraw.fillRectAlpha(g, 0, 0, 240, 240, 0x000000, 96);
         } else {
-            renderTechnoGreenOverlayBackground(g);
+            g.setColor(0x000000);
+            g.fillRect(0, 0, 240, 240);
         }
 
         g.setColor(0x005500);

@@ -320,9 +320,7 @@ final class ReplaySaveUi {
         }
 
         if (h.getMode() == 3) {
-            int spellId = h.getSpellId();
-            String name = getSpellName(spellId);
-            return name;
+            return getSpellName(h.getSpellId());
         }
 
         return difficultyName(h.getDifficulty()) + " " + stageName(h.getStage());

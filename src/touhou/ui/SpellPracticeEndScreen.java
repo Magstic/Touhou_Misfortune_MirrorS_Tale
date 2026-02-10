@@ -196,7 +196,6 @@ public final class SpellPracticeEndScreen {
 
         StageClearResultPanel.renderReplayListBackgroundOrFallback(g, sprites);
         ReplaySaveUi.renderSlotListCompact(g, FONT, replayCursor, slotHeaders, UiText.get(TextId.COMMON_SLOT_PREFIX));
-        // Removed bottom key hint text.
 
         if (scene == SCENE_REPLAY_OK || scene == SCENE_REPLAY_FAIL) {
             ReplaySaveUi.renderSaveResultBox(g, FONT, scene == SCENE_REPLAY_OK, 104);

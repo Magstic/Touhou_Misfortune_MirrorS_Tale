@@ -104,7 +104,6 @@ public final class ReplayScreen {
                 scene = SCENE_ACTION;
                 msgCounter = 0;
                 msg = null;
-                updateActionList();
                 updateActionCache();
             }
             return null;
@@ -167,7 +166,6 @@ public final class ReplayScreen {
         } else if ((pressed & GameCanvas.FIRE_PRESSED) != 0) {
             scene = SCENE_ACTION;
             actionCursor = 0;
-            updateActionList();
             updateActionCache();
             // Place cursor on the first enabled action.
             ensureActionCursorEnabled(1);
@@ -246,11 +244,6 @@ public final class ReplayScreen {
     private boolean cachedHasBoss;
     private boolean cachedImported;
 
-    // Action list is built from slot metadata (mode, boss-only snapshot, etc.).
-    // For the new grid layout, we use fixed 6 slots, checking availability at runtime.
-    // private final int[] actionList = new int[4];
-    // private int actionCount;
-
     private final ReplayHeader[] slotHeaders = new ReplayHeader[ReplayRmsStore.SLOT_COUNT];
     private final byte[][] slotNames = new byte[ReplayRmsStore.SLOT_COUNT][ReplayRmsStore.NAME_SIZE];
     private final byte[] tmpFull = new byte[ReplayRmsStore.DATA_SIZE];
@@ -271,11 +264,6 @@ public final class ReplayScreen {
         ReplaySaveUi.loadAllSlots(slotHeaders, slotNames, tmpFull, tmpBoss);
 
         cachedSlot = -1;
-    }
-
-    private void updateActionList() {
-        // Fixed 3x2 grid layout, always 6 items.
-        // Navigation is handled by grid logic, availability checked at runtime.
     }
 
     private void updateActionCache() {
@@ -396,9 +384,6 @@ public final class ReplayScreen {
         int rightX = cardX + cardW - 12;
 
         int y0 = cardY + 16;
-        
-        // Removed "Slot X" text as requested.
-        // UiDraw.drawString2(g, font, cachedSlotTitle, leftX, y0, 0, 0xFFFFFF, 0x333333);
 
         // Draw individual tag badges at top-right (no redundant "ST" mode label).
         int badgeX = rightX;
@@ -472,15 +457,9 @@ public final class ReplayScreen {
             int shadowColor = enabled ? (sel ? 0x224422 : 0x222222) : 0x111111;
             int borderColor = enabled ? (sel ? 0x00FF00 : 0x005500) : 0x333333;
 
-            if (sel) {
-                UiDraw.fillRectAlpha(g, bx, by - 12, btnW, btnH, 0x001A00, 224);
-                g.setColor(borderColor);
-                g.drawRect(bx, by - 12, btnW - 1, btnH - 1);
-            } else {
-                UiDraw.fillRectAlpha(g, bx, by - 12, btnW, btnH, 0x000000, 128);
-                g.setColor(borderColor);
-                g.drawRect(bx, by - 12, btnW - 1, btnH - 1);
-            }
+            UiDraw.fillRectAlpha(g, bx, by - 12, btnW, btnH, sel ? 0x001A00 : 0x000000, sel ? 224 : 128);
+            g.setColor(borderColor);
+            g.drawRect(bx, by - 12, btnW - 1, btnH - 1);
 
             String label = actionLabel(i);
             UiDraw.drawString2(g, font, label, bx + (btnW >> 1), by, 1, mainColor, shadowColor);
@@ -618,7 +597,6 @@ public final class ReplayScreen {
         UiDraw.drawString2(g, font,
                 UiText.get(TextId.REPLAY_DELETE_CONFIRM_PREFIX) + (cursor + 1) + UiText.get(TextId.REPLAY_DELETE_CONFIRM_SUFFIX),
                 120, baseY, 1, 0xFFFFFF, 0x444444);
-        // Removed bottom key hint text.
     }
 
     private void renderMessage(Graphics g, Font font) {
@@ -636,7 +614,6 @@ public final class ReplayScreen {
         int boxH = 36;
         int baseY = boxY + ((boxH - UiDraw.fontHeight(font)) >> 1) + UiDraw.fontBaseline(font);
         UiDraw.drawString2(g, font, s, 120, baseY, 1, 0xFFFFFF, 0x444444);
-        // Removed bottom key hint text.
     }
 
     // Use ReplaySaveUi for list rendering and header formatting.

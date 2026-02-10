@@ -290,52 +290,16 @@ public final class SpellPracticeScreen {
 
             if ((pressed & GameCanvas.LEFT_PRESSED) != 0) {
                 chara = (chara - 1 + 3) % 3;
-                    if (chara == 2 && !UnlockFlags.isAliceUnlocked()) {
-                        // Alice is unlockable; skip when locked.
-                        chara = 1;
-                    }
-                effect6 = 0;
-                effect5 = 0;
-                effect9 = effect8;
-                effectB = effectA;
-                switch (chara) {
-                    case 0:
-                        effect8 = 0xFFFFFF;
-                        effectA = 0xFF0000;
-                        break;
-                    case 1:
-                        effect8 = 0x000000;
-                        effectA = 0xFFFFFF;
-                        break;
-                    default:
-                        effect8 = 0x0000FF;
-                        effectA = 0x000000;
-                        break;
+                if (chara == 2 && !UnlockFlags.isAliceUnlocked()) {
+                    chara = 1;
                 }
+                applyCharaChangeEffects();
             } else if ((pressed & GameCanvas.RIGHT_PRESSED) != 0) {
                 chara = (chara + 1) % 3;
-                    if (chara == 2 && !UnlockFlags.isAliceUnlocked()) {
-                        // Alice is unlockable; skip when locked.
-                        chara = 0;
-                    }
-                effect6 = 0;
-                effect5 = 0;
-                effect9 = effect8;
-                effectB = effectA;
-                switch (chara) {
-                    case 0:
-                        effect8 = 0xFFFFFF;
-                        effectA = 0xFF0000;
-                        break;
-                    case 1:
-                        effect8 = 0x000000;
-                        effectA = 0xFFFFFF;
-                        break;
-                    default:
-                        effect8 = 0x0000FF;
-                        effectA = 0x000000;
-                        break;
+                if (chara == 2 && !UnlockFlags.isAliceUnlocked()) {
+                    chara = 0;
                 }
+                applyCharaChangeEffects();
             }
 
             return null;
@@ -900,6 +864,28 @@ public final class SpellPracticeScreen {
         UiDraw.drawStringOutline(g, font, CHARA_INFO[chara][0], 10, y + 0, 0, main0, sh0);
         UiDraw.drawStringOutline(g, font, CHARA_INFO[chara][1], 10, y + 15, 0, main1, sh1);
         UiDraw.drawStringOutline(g, font, CHARA_INFO[chara][2 + type], 10, y + 30, 0, main2, sh2);
+    }
+
+    // Shared effect update when chara selection changes (LEFT/RIGHT).
+    private void applyCharaChangeEffects() {
+        effect6 = 0;
+        effect5 = 0;
+        effect9 = effect8;
+        effectB = effectA;
+        switch (chara) {
+            case 0:
+                effect8 = 0xFFFFFF;
+                effectA = 0xFF0000;
+                break;
+            case 1:
+                effect8 = 0x000000;
+                effectA = 0xFFFFFF;
+                break;
+            default:
+                effect8 = 0x0000FF;
+                effectA = 0x000000;
+                break;
+        }
     }
 
     private static int mixColor(int c0, int c1, int t, int tMax) {
