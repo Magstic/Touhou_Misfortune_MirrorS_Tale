@@ -61,3 +61,5 @@
 | `ant clean` | 清理建置檔案 |
 
 建置完成後，可在 `dist/` 目錄下取得 JAR 檔。
+
+若想使用 `run` 指令，您需要先將 `freej2me.jar` 放到專案的 `emulator` 下。

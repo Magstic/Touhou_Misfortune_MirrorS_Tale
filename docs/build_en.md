@@ -61,3 +61,5 @@ Install the following software in order (required on both platforms):
 | `ant clean` | Clean build artifacts |
 
 The output JAR can be found in the `dist/` directory after a successful build.
+
+If you want to use the `run` command, you must first place `freej2me.jar` in the project’s `emulator` directory.
