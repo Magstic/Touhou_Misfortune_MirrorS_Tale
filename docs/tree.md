@@ -70,6 +70,7 @@ Touhou Misfortune MirrorS Tale/
 │   │   ├── ReplayCodec.java         #     Fixed-size RLE codec for replay frames (30720 -> 7168)
 │   │   ├── ReplayRecordingController.java # Recording session controller
 │   │   ├── ReplayPlaybackController.java  # Playback session controller
+│   │   ├── ReplayTimeScaleController.java # Replay playback speed (slow/fast/auto-FF)
 │   │   ├── ReplayStageRecorder.java #     Per-stage recording helper
 │   │   ├── ReplayRng.java           #     Deterministic LCG RNG for replay sync
 │   │   ├── ReplayRmsStore.java      #     Replay save/load via RMS
@@ -298,7 +299,7 @@ flowchart LR
 | `StageDochu` | Mid-stage (dochu) enemy shooting patterns per enemyType |
 | `BossController` | Boss FSM: HP, spell timer, phase transitions; hosts `BossStageLogic[7]` for all stages |
 | `AbstractBossStageLogic` | Abstract base: implements `BossStageLogic`, syncs shared state (bwave, spellId, etc.) with `BossController` via pull/push |
-| `Stage[1-6]BossLogic` | Per-stage boss spell card patterns (faithful port from DoJa `a.txt`) |
+| `Stage[1-6]BossLogic` | Per-stage boss spell card patterns (faithful port from DoJa) |
 | `StageExtraBossLogic` | EX stage boss patterns (single difficulty, no level branching) |
 
 ### Replay Layer
@@ -311,6 +312,7 @@ flowchart LR
 | `ReplayCodec` | Fixed-size RLE codec for replay frames (30720 -> 7168) |
 | `ReplayRecordingController` | Recording session: captures keys + snapshots during play |
 | `ReplayPlaybackController` | Playback session: feeds recorded keys back into engine |
+| `ReplayTimeScaleController` | Replay playback speed: slow/fast/auto fast-forward controller |
 | `ReplayStageRecorder` | Per-stage recording lifecycle |
 | `ReplayRng` | Seeded LCG RNG (state * 1103515245 + 12345) for deterministic replay |
 | `ReplayRmsStore` | RMS persistence for replay slots |
