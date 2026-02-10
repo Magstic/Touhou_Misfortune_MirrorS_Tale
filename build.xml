@@ -1,0 +1,220 @@
+<project name="TouhouMisfortuneMirrorsTale" default="package" basedir=".">
+
+    <!-- ===== Directories ===== -->
+    <property name="src.dir"           value="src"/>
+    <property name="res.dir"           value="res"/>
+    <property name="lib.dir"           value="lib"/>
+    <property name="build.dir"         value="build"/>
+    <property name="classes.dir"       value="${build.dir}/classes"/>
+    <property name="tools.classes.dir" value="${build.dir}/tools-classes"/>
+    <property name="dist.dir"          value="dist"/>
+
+    <!-- ===== MIDlet metadata ===== -->
+    <property name="dist.name"      value="TouhouMisfortuneMirrorsTale"/>
+    <property name="midlet.name"    value="東方氷幻鏡"/>
+    <property name="midlet.vendor"  value="L-Garden"/>
+    <property name="midlet.version" value="1.0.4"/>
+
+    <!-- ===== External tools (override via -D) ===== -->
+    <property name="freej2me.jar"  value="emulator/freej2me.jar"/>
+
+    <!-- ===== Cross-platform WTK detection ===== -->
+    <!-- Windows default: Java ME SDK 3.4;  Linux default: ~/WTK2.5.2    -->
+    <!-- Override with: ant -Dwtk.home=<path>                             -->
+    <condition property="wtk.home" value="${user.home}/WTK2.5.2">
+        <os family="unix"/>
+    </condition>
+    <property name="wtk.home" value="C:/Java_ME_platform_SDK_3.4"/>
+
+    <!-- Antenna reads these implicitly to determine platform version -->
+    <property name="wtk.cldc.version" value="1.1"/>
+    <property name="wtk.midp.version" value="2.0"/>
+
+    <!-- ===== J2ME API (from WTK) ===== -->
+    <!-- Auto-detect jar names: Java ME SDK 3.4 vs WTK 2.5.2             -->
+    <available file="${wtk.home}/lib/cldc_1.1.jar"   property="cldc.jar"   value="${wtk.home}/lib/cldc_1.1.jar"/>
+    <available file="${wtk.home}/lib/midp_2.0.jar"   property="midp.jar"   value="${wtk.home}/lib/midp_2.0.jar"/>
+    <available file="${wtk.home}/lib/jsr082_1.1.jar" property="jsr082.jar" value="${wtk.home}/lib/jsr082_1.1.jar"/>
+    <!-- Fallback: WTK 2.5.2 naming (cldcapi11, midpapi20, jsr082) -->
+    <property name="cldc.jar"   value="${wtk.home}/lib/cldcapi11.jar"/>
+    <property name="midp.jar"   value="${wtk.home}/lib/midpapi20.jar"/>
+    <property name="jsr082.jar" value="${wtk.home}/lib/jsr082.jar"/>
+
+    <!-- ===== Build tools (bundled in lib/) ===== -->
+    <property name="proguard.jar" value="${lib.dir}/proguard.jar"/>
+    <property name="antenna.jar"  value="${lib.dir}/antenna-bin-1.2.1-beta.jar"/>
+
+    <!-- bgm.file: set by "-bgm-lite" (ant s) or "-init-bgm" (default full) -->
+
+    <!-- ===== Classpaths & task definitions ===== -->
+    <path id="j2me.bootclasspath">
+        <pathelement location="${cldc.jar}"/>
+        <pathelement location="${midp.jar}"/>
+        <pathelement location="${jsr082.jar}"/>
+    </path>
+
+    <taskdef name="wtkpreverify" classname="de.pleumann.antenna.WtkPreverify">
+        <classpath><pathelement location="${antenna.jar}"/></classpath>
+    </taskdef>
+    <taskdef name="wtkjad" classname="de.pleumann.antenna.WtkJad">
+        <classpath><pathelement location="${antenna.jar}"/></classpath>
+    </taskdef>
+
+    <available file="${proguard.jar}" property="proguard.jar.exists"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}" failonerror="false"/>
+        <delete dir="${dist.dir}" failonerror="false"/>
+        <!-- ProGuard leaves tmp* dirs in the project root -->
+        <delete includeemptydirs="true" failonerror="false">
+            <fileset dir="${basedir}" includes="tmp*/**"/>
+            <fileset dir="${basedir}" includes="tmp*" defaultexcludes="no"/>
+        </delete>
+    </target>
+
+    <!-- Default build: always clean output folders and rebuild artifacts. -->
+    <target name="package" depends="clean,dist"/>
+
+    <!-- Internal: default full BGM -->
+    <target name="-init-bgm">
+        <property name="bgm.file" value="${res.dir}/snd/bgm.dat"/>
+    </target>
+
+    <!-- Internal: simplified (12-polyphony) BGM -->
+    <target name="-bgm-lite">
+        <property name="bgm.file" value="${res.dir}/snd/bgm_s.dat"/>
+    </target>
+
+    <!-- Simplified BGM build: ant s | ant s run -->
+    <target name="s" depends="-bgm-lite,package"/>
+
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8" includeantruntime="false" debug="true" source="1.3" target="1.1">
+            <bootclasspath refid="j2me.bootclasspath"/>
+            <compilerarg value="-Xlint:-options"/>
+        </javac>
+    </target>
+
+    <target name="compile-tools-i18n" depends="init">
+        <mkdir dir="${tools.classes.dir}"/>
+        <javac srcdir="tools" destdir="${tools.classes.dir}" encoding="UTF-8" includeantruntime="false" debug="false" includes="I18nPackBuilder.java,FontDatBuilder.java"/>
+    </target>
+
+    <target name="i18n-pack" depends="compile-tools-i18n">
+        <java classname="I18nPackBuilder" fork="true" failonerror="true">
+            <classpath>
+                <pathelement location="${tools.classes.dir}"/>
+            </classpath>
+            <arg value="${basedir}"/>
+            <arg value="en"/>
+            <arg value="ja"/>
+            <arg value="zht"/>
+        </java>
+    </target>
+
+    <target name="jar" depends="compile,i18n-pack,-init-bgm">
+        <jar destfile="${build.dir}/raw.jar">
+            <manifest>
+                <attribute name="MIDlet-Name" value="${midlet.name}"/>
+                <attribute name="MIDlet-Vendor" value="${midlet.vendor}"/>
+                <attribute name="MIDlet-Version" value="${midlet.version}"/>
+                <attribute name="MIDlet-Icon" value="/res/icon.png"/>
+                <attribute name="MIDlet-1" value="${midlet.name}, /res/icon.png, touhou.MainMidlet"/>
+                <attribute name="MicroEdition-Profile" value="MIDP-2.0"/>
+                <attribute name="MicroEdition-Configuration" value="CLDC-1.1"/>
+            </manifest>
+            <fileset dir="${classes.dir}" includes="**/*.class"/>
+            <zipfileset dir="${res.dir}" prefix="res" includes="**/*">
+                <exclude name="i18n/**"/>
+                <exclude name="snd/bgm.dat"/>
+                <exclude name="snd/bgm_s.dat"/>
+            </zipfileset>
+            <!-- Include the selected BGM pack (full or simplified) as bgm.dat -->
+            <zipfileset file="${bgm.file}" fullpath="res/snd/bgm.dat"/>
+
+            <zipfileset dir="${res.dir}/i18n" prefix="res/i18n" includes="*.dat"/>
+        </jar>
+        <!-- Clean generated i18n .dat files after they are packed into the JAR -->
+        <delete failonerror="false">
+            <fileset dir="${res.dir}/i18n" includes="*.dat"/>
+        </delete>
+    </target>
+
+    <target name="proguard" depends="jar">
+        <fail unless="proguard.jar.exists" message="proguard.jar not found: ${proguard.jar}"/>
+        <java classname="proguard.ProGuard" fork="true" failonerror="true">
+            <classpath><pathelement location="${proguard.jar}"/></classpath>
+            <arg value="-injars"/>      <arg value="${build.dir}/raw.jar"/>
+            <arg value="-outjars"/>     <arg value="${build.dir}/obf.jar"/>
+            <arg value="-libraryjars"/> <arg value="${cldc.jar}"/>
+            <arg value="-libraryjars"/> <arg value="${midp.jar}(!java/**)"/>
+            <arg value="-libraryjars"/> <arg value="${jsr082.jar}(!java/**)"/>
+            <arg value="-microedition"/>
+            <arg value="-dontpreverify"/>
+            <arg value="-dontusemixedcaseclassnames"/>
+            <arg value="-dontskipnonpubliclibraryclasses"/>
+            <arg value="-dontskipnonpubliclibraryclassmembers"/>
+            <arg value="-keep"/> <arg value="public class touhou.MainMidlet { *; }"/>
+            <arg value="-keep"/> <arg value="public class * extends javax.microedition.midlet.MIDlet { *; }"/>
+            <arg value="-printmapping"/> <arg value="${build.dir}/proguard.map"/>
+        </java>
+    </target>
+
+    <target name="preverify" depends="proguard">
+        <delete file="${dist.dir}/${dist.name}.jar" failonerror="false"/>
+        <wtkpreverify jarfile="${build.dir}/obf.jar" tojarfile="${dist.dir}/${dist.name}.jar"
+                      cldc="true" nonative="true" nofinalize="true">
+            <bootclasspath refid="j2me.bootclasspath"/>
+        </wtkpreverify>
+    </target>
+
+    <target name="write-jad" depends="preverify">
+        <length file="${dist.dir}/${dist.name}.jar" property="jar.size"/>
+        <echo file="${dist.dir}/${dist.name}.jad" encoding="UTF-8">MIDlet-Name: ${midlet.name}
+MIDlet-Vendor: ${midlet.vendor}
+MIDlet-Version: ${midlet.version}
+MIDlet-Icon: /res/icon.png
+MIDlet-1: ${midlet.name}, /res/icon.png, touhou.MainMidlet
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
+MIDlet-Jar-URL: ${dist.name}.jar
+MIDlet-Jar-Size: ${jar.size}
+</echo>
+        <wtkjad jadfile="${dist.dir}/${dist.name}.jad" jarfile="${dist.dir}/${dist.name}.jar"
+                update="true" name="${midlet.name}" vendor="${midlet.vendor}"
+                version="${midlet.version}" encoding="UTF-8"/>
+    </target>
+
+    <target name="dist" depends="write-jad"/>
+
+    <target name="run" depends="dist">
+        <condition property="freej2me.jar.nonempty">
+            <not>
+                <equals arg1="${freej2me.jar}" arg2=""/>
+            </not>
+        </condition>
+        <available file="${freej2me.jar}" property="freej2me.jar.exists"/>
+        <fail unless="freej2me.jar.nonempty" message="Set -Dfreej2me.jar=.../freej2me.jar"/>
+        <fail unless="freej2me.jar.exists" message="freej2me.jar not found: ${freej2me.jar}"/>
+
+        <!-- Run inside emulator/ to isolate freej2me_system and config from the project root -->
+        <property name="emulator.dir" value="${basedir}/emulator"/>
+        <mkdir dir="${emulator.dir}"/>
+
+        <!-- Resolve absolute paths so they work regardless of working directory -->
+        <property name="freej2me.jar.absolute" location="${freej2me.jar}"/>
+        <property name="game.jar.absolute" location="${dist.dir}/${dist.name}.jar"/>
+
+        <exec executable="java" dir="${emulator.dir}" spawn="true" failonerror="false">
+            <arg value="-jar"/>
+            <arg value="${freej2me.jar.absolute}"/>
+            <arg value="${game.jar.absolute}"/>
+        </exec>
+    </target>
+</project>

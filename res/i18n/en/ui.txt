@@ -1,0 +1,581 @@
+- Options -
+BGM Vol
+S.E. Vol
+S.E. Config
+Vibration
+GameConfig
+Debug
+Default
+Back
+BGM volume
+S.E. volume
+Toggle S.E. on/off
+Vibration on/off
+Game settings
+Debug menu
+Reset defaults
+To title
+- Loading -
+Start the game
+Start the extra stage
+Challenge spell card battles
+Select a stage and start practice
+Watch replays
+View hiscore and spell card history
+Listen to music
+Change settings
+Quit
+- Help (
+/page) -
+Modes (1)
+Modes (2)
+Controls
+In-game HUD
+Items (1)
+Items (2)
+Spell Cards
+Other Systems
+Replay (1)
+Replay (2)
+Replay (3)
+Score Ranking
+About Extra Start
+Staff (1)
+Staff (2)
+？？？？？？？？？？？？
+- Replay -
+Deleted.
+Not implemented.
+Empty slot.
+No boss segment.
+No boss snapshot.
+Unknown action.
+Play
+Play (Boss)
+Delete
+Net Share
+BT Share
+Back
+Score
+
+Empty
+Delete Slot
+?
+
+- Results -
+View spell card history
+View past records
+View Gensokyo records
+View other records
+Back
+(network not implemented)
+- Spell Cards[
+- Score[
+- Other Records -
+Captured:
+Easy
+Normal
+Hard
+Lunatic
+Extra
+(upload not implemented)
+Boot time
+Play time
+Total clears
+Continue count
+Retry count
+Play count
+Normal
+Practice
+EXTRA
+- Results -
+HiScore
+Score
+Continues
+Miss
+Bomb
+Spell Bonus
+Push EnterKey
+Press # to save replay
+] -
+] -
+Total
+Reimu Hakurei
+Reimu Hakurei B
+Marisa Kirisame
+Marisa Kirisame B
+Alice Margatroid
+Alice Margatroid B
+Save replay?
+No
+Yes
+Slot
+- Replay List -
+Replay saved
+Replay save failed
+EASY
+NORMAL
+HARD
+LUNATIC
+EXTRA
+Stage1
+Stage2
+Stage3
+Stage4
+Stage5
+Stage6
+StageEx
+Reimu
+Marisa
+Alice
+Spell
+Stage
+Recv
+
+ 
+SpellNo.
+ON
+OFF
+>
+- S.E. Config -
+Nav
+Select
+Back
+CD
+Crash
+Graze
+Pause
+Crash2
+Power
+Life
+Shot
+Alice
+Reimu
+Marisa
+Back
+Cursor move
+Select
+Back
+Spell card down
+Player hit
+Graze
+Pause
+Enemy down
+Power up
+Life/Bomb up
+Shot hit
+Alice bomb
+Reimu bomb
+Marisa bomb
+Back
+- Game Config -
+PlayerStock
+TenkeyMove
+ShotKey
+SlowKey
+SpellKey
+Compatible
+Cheating
+Back
+Initial lives [1-6]
+Tenkey movement
+Key config: Shot
+Key config: Slow
+Key config: Spell
+Compatibility
+Cheats
+Back
+- Cheating -
+Boss Shield
+Item Collection Limit
+Back
+Boss bomb shield
+Top item collect limit
+Back
+- Compatible -
+Close-up
+HeavyBG
+Mystia Fade
+Alpha: BOMB Close-up
+Alpha: BOSS Close-up
+Alpha: Player Bullets
+Back
+Close-up fade in/out
+Fancy background
+Stage2 dark mask fade
+Overlay alpha
+Overlay alpha
+Player bullets alpha
+Back
+- Debug -
+FPS
+Profiler
+Resource
+Back
+Show FPS
+Performance info
+Resource info
+Back
+WARNING
+Cheat ON disables replay/score
+Press any key to close
+- Music Room -
+From
+Start:
+Start story mode
+Extra Start:
+Available after meeting conditions
+Spell Practice:
+Practice spell cards
+Practice Start:
+Select a stage and start practice
+Replay:
+Watch replays
+Result:
+View hiscore and spell card history
+Music Room:
+Listen to music
+Option:
+Change settings
+Quit:
+Quit
+<Normal Play>
+[D-Pad]: Move
+[1-9]:Unused (assignable in Options)
+[OK]: Unused (assignable in Options)
+    [*]: Shot ON/OFF
+    [0]: Switch speed Fast/Slow
+    [#]: Use Spell Card (Bomb)
+*Key config is available in Options
+<Dialog>
+[OK]: Next message
+HiScore:
+Your highest score.
+Score:
+Current score.
+Player:
+Remaining lives.
+Spell:
+Remaining bombs.
+Power:
+Current shot power.
+Graze:
+Times grazed enemy bullets.
+P
+Increases power by 1. Lose 5 per 
+miss, 128 for full power.
+Pt
+Increases score. Collect at the top
+of the screen for more points.
+P (Large)
+Worth 8 power items.
+F
+Worth 128 power items.
+B
+Increases bombs by 1.
+1UP
+Increases lives by 1.
+★
+Increases score.
+Auto-collected.
+What are Spell Cards?
+Special bullet patterns fired by
+boss enemies. Used when hit by
+your bomb/damage.
+*Self-attack corresponds to bomb
+Spell Card Bonus
+A bonus earned by defeating the
+opponent's spell without missing
+or using bombs.
+Spell history can be viewed in
+the Replay menu's Result.
+◇Extend
+When point items collected reach 50,
+125, 200, 300, 450, 600, and every
+200 after, you gain 1 extra life.
+◇Death Bombing
+If you activate a bomb (spell card)
+at the moment you get hit by enemy
+fire, you can revive without dying.
+◇Auto Item Collection
+Moving top of screen at max power
+Using your spell card (bomb)
+Boss pattern shifts or is defeated
+◇Save Method
+Press # key on the Result screen
+after clearing a stage to save the
+replay of that stage.
+※Cannot save if you continued
+Saved replays can be played back from
+Replay in the title continue menu.
+◇Special Controls
+Left key: (while held) Slow playback
+Right key: (while held) Fast playback
+◇Download from Homepage
+From 東方氷幻鏡>ﾘﾌﾟﾚｲﾀﾞｳﾝﾛｰﾄﾞ
+on website, you can download replays.
+※Please to the website for details
+◇Upload to Homepage
+If you have registered as a user on
+the site, you can upload your replay
+data to the web.
+※Uploaded replay data may be
+downloaded by other people.
+◇Saving to SD Card
+･Replay data saved in the app can be
+saved to an SD card, up to a maximum
+of 10 replays.
+※SD card usage can be enabled/
+disabled in the options settings.
+◇How to Join Rankings?
+You need to register as a user on the
+site. For details, please see the user
+registration page on the site.
+After registering, press right soft
+key to upload scores.
+◇Registration Notes
+Please avoid entering text in your
+username or comments that others may
+find offensive.
+◇Differences and Strategy Hints
+･Extra allows item collection at top.
+
+･Always starts with 3 players.
+
+･Continue unavailable.
+･Enemy bullets follow fixed patterns
+based on your movement. Memorize
+dodging patterns to clear easily.
+
+[Program]
+[Graphic]
+[Sound]
+[Support]
+シーナ
+ふー (General & Characters)
+Radram (Background)
+Scirocco
+MegR@ (Scenario & Web)
+梟 (Web Design & Others)
+帆波 (Test Play & Others)
+きんまち (Test Play)
+[東方Project開発元]
+[東方氷幻鏡開発]
+上海アリス幻樂団
+http://www16.big.or.jp/~zun/
+L-Garden(シーナ)
+http://rabbits.iobb.net/ciena/
+トッパツプラン(ふー)
+http://homepage3.nifty.com/toppatu/
+※東方氷幻鏡 is a derivative
+work of Touhou Project
+
+Casual difficulty
+Standard difficulty
+Challenging difficulty
+Absurd difficulty
+The other side of the mirror
+Reimu Hakurei
+Marisa Kirisame
+Alice Margatroid
+ShrineMaiden of Paradise
+Reimu Hakurei
+[Homing Type]
+Releases homing amulets
+that cover a wide area
+[Rapid Fire Type]
+Releases concentrated
+attacks forward
+[Special Ability]
+Small hitbox
+Ordinary Magician
+Marisa Kirisame
+[Penetration Type]
+Releases
+penetrating lasers
+[Power Focus Type]
+Releases
+high-power missiles
+[Special Ability]
+Wide item pickup range
+Seven-Colored Puppeteer
+Alice Margatroid
+[Puppet Type]
+Attacks by
+controlling dolls
+[Auto-Doll Type]
+Dolls attack
+automatically
+[Special Ability]
+Speed-dependent attack
+
+< Practice Mode >
+- Select a difficulty -
+- Select a character -
+- Select a stage -
+
+- Story -
+
+- Spell Practice -
+Choose Girl and Stage.
+☆
+Total
+Choose Card
+
+東方氷幻鏡 STAFF
+- Planning -
+シーナ
+- Program -
+シーナ
+- Graphics -
+ふー
+Radram
+- Sound -
+Scirocco
+- Special Thanks -
+輪廻人形
+帆波
+梟
+- Test Play -
+きんまち    マツダ
+KB          ヒロユキ
+finga       あーす
+にっしー    れいにぃ
+- Original -
+Team Shanghai Alice (ZUN)
+http://www16.big.or.jp/~zun/
+- Development -
+L-Garden (シーナ)
+http://rabbits.iobb.net/ciena/
+トッパツプラン (ふー)
+http://homepage3.nifty.com/toppatu/
+- Pause -
+Resume
+Back to menu
+Back to title
+Restart
+- Continue -
+Yes
+No
+Remaining 
+ left
+
+ Title
+Stage1 Mid
+Stage1 Boss
+Stage2 Mid
+Stage2 Boss
+Stage3 Mid
+Stage3 Boss
+Stage4 Mid
+Stage4 Boss
+Stage5 Mid
+Stage5 Boss
+Stage6 Mid
+Stage6 Boss
+Extra Mid
+Extra Boss
+Epilogue
+Ending
+LastWord
+Original:東方封魔録 〜 浄土曼荼羅
+Original:夜だから眠れない
+Original:サニールチルフレクション
+Original:夜雀の歌声 〜 Night Bird
+Original:もう歌しかきこえない
+Original:遠野幻想物語
+Original:ティアオイエツォン
+Original:懐かしき東方の血〜Old World
+Original:プレインエイジア
+Original:メイドと血の懐中時計
+Original:月時計-ルナダイアル-
+Original:恋色マジック
+Original:魔女達の舞踏会
+Original:Romantic Children
+Original:プラスチックマインド
+Original:紅より儚い永遠
+Original:永遠の巫女
+Original:東方妖怪小町
+東方封魔録
+東方三月精
+東方三月精
+東方永夜抄
+東方永夜抄
+東方妖々夢
+東方妖々夢
+東方永夜抄
+東方永夜抄
+東方紅魔郷
+東方紅魔郷
+東方封魔録
+秋霜玉
+東方怪綺談
+東方怪綺談
+東方紅魔郷
+東方靈異伝
+東方永夜抄
+?????(Warning)
+This song has not been played yet
+Are you sure you want to play it?
+%
+Volume: 
+- Quit? -
+Continue
+Quit
+Try again?
+Yes
+No
+SpellCard Bonus
+- BT Receive -
+- BT Send -
+Waiting...
+Select device...
+Connecting...
+Connected.
+Receiving...
+Sending...
+Done.
+Canceled.
+Device
+Bytes
+Speed
+Back
+Cancel
+Save
+OK
+BT not supported.
+Canceling...
+Canceled.
+Invalid data.
+BT error:
+No data
+Save failed.
+Saved to Slot
+.
+Overwrite Slot
+?
+Sent.
+
+Let's aim for a no-continue clear 
+on Normal difficulty or higher!
+Ending No.0
+Next Extra Story.
+
+Hit Spark
+Red hit spark effect
+
+
+
+
+
+
+
+Spirit Sign "Dream Seal"
+Love Sign "Master Spark"
+Puppeteer Sign "Dolls Party"
+
+From 
+ 's Replay data
+Accept?
+Accept
+Reject

@@ -1,0 +1,18 @@
+# Build output
+build/
+dist/
+tmp*/
+
+# Compiled classes
+*.class
+
+# Dev
+tools/dev/
+docs/dev/
+lib/*.jar
+
+# IDE
+.vscode/
+
+# Emulator runtime
+emulator/
