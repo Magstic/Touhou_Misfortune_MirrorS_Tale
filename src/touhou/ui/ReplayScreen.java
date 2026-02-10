@@ -416,7 +416,11 @@ public final class ReplayScreen {
             ReplayHeader h = slotHeaders[cursor];
             if (!cachedSpellPractice) {
                 // Draw difficulty icon at top-left, clamp inside card bounds.
-                drawDifficultyIconInCard(g, h, cardX, cardY, cardW, cardH);
+                drawIconInCard(g, difficultyToBulletId(h.getDifficulty()), 0, cardX, cardY, cardW, cardH);
+            } else {
+                // Spell practice replay: draw replay kind icon (LastWord vs normal).
+                int cropR = isLastWordSpell(h.getSpellId()) ? 0 : 10;
+                drawIconInCard(g, 190, cropR, cardX, cardY, cardW, cardH);
             }
 
             // Name / Detail line
@@ -541,58 +545,40 @@ public final class ReplayScreen {
         return UiText.get(TextId.REPLAY_ACTION_BACK);
     }
 
-    private void drawDifficultyIcon(Graphics g, ReplayHeader h, int x, int y) {
-        if (sprites == null || h == null) {
-            return;
-        }
-        int d = h.getDifficulty();
-        if (d < 0) {
-            return;
-        }
-        if (d > 3) {
-            d = 3;
-        }
-        sprites.drawAlpha(g, 185 + d, x, y, 200);
+    private static int difficultyToBulletId(int d) {
+        if (d >= 0 && d <= 3) return 185 + d;
+        if (d == 4) return 189;
+        return -1;
     }
 
-    private void drawDifficultyIconInCard(Graphics g, ReplayHeader h, int cardX, int cardY, int cardW, int cardH) {
-        if (sprites == null || g == null || h == null) {
-            return;
-        }
+    private static boolean isLastWordSpell(int spellId) {
+        return spellId >= 107 && spellId <= 115;
+    }
 
-        int d = h.getDifficulty();
-        if (d < 0) {
-            return;
-        }
-        if (d > 3) {
-            d = 3;
-        }
+    // Draw a sprite icon inside the replay detail card, clamped within card bounds.
+    private void drawIconInCard(Graphics g, int bulletId, int cropRight, int cardX, int cardY, int cardW, int cardH) {
+        if (sprites == null || g == null || bulletId < 0) return;
 
-        int bulletId = 185 + d;
         int[] m = tmpSpriteMetrics;
         if (!sprites.getSizeAndAnchor(bulletId, m)) {
-            drawDifficultyIcon(g, h, cardX + 10, cardY + 10);
+            sprites.drawAlphaCropRight(g, bulletId, cardX + 10, cardY + 10, 200, cropRight);
             return;
         }
 
-        int w = m[0];
+        int w = m[0] - (cropRight > 0 ? cropRight : 0);
         int hh = m[1];
         int ax = m[2];
         int ay = m[3];
-
-        int minDx = cardX + 2;
-        int minDy = cardY + 2;
-        int maxDx = cardX + cardW - 2 - w;
-        int maxDy = cardY + cardH - 2 - hh;
+        if (w <= 0 || hh <= 0) return;
 
         int dx = cardX + 10;
         int dy = cardY + 10;
-        if (dx < minDx) dx = minDx;
-        if (dy < minDy) dy = minDy;
-        if (dx > maxDx) dx = maxDx;
-        if (dy > maxDy) dy = maxDy;
+        if (dx < cardX + 2) dx = cardX + 2;
+        if (dy < cardY + 2) dy = cardY + 2;
+        if (dx > cardX + cardW - 2 - w) dx = cardX + cardW - 2 - w;
+        if (dy > cardY + cardH - 2 - hh) dy = cardY + cardH - 2 - hh;
 
-        drawDifficultyIcon(g, h, dx + ax, dy + ay);
+        sprites.drawAlphaCropRight(g, bulletId, dx + ax, dy + ay, 200, cropRight);
     }
 
     // Returns the badge width so callers can stack badges right-to-left.

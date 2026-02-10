@@ -209,6 +209,29 @@ public final class BulletSprites {
         return false;
     }
 
+    // UI helper: draw a sprite with alpha, cropping cutRight pixels from the right edge.
+    public boolean drawAlphaCropRight(Graphics g, int bulletId, int x, int y, int alpha, int cutRight) {
+        if (cutRight <= 0) {
+            return drawAlpha(g, bulletId, x, y, alpha);
+        }
+        if (!cc.hasSpriteMeta(bulletId)) {
+            return false;
+        }
+        int w = cc.getW(bulletId) - cutRight;
+        int h = cc.getH(bulletId);
+        if (w <= 0 || h <= 0) {
+            return false;
+        }
+        int ax = cc.getAx(bulletId);
+        int ay = cc.getAy(bulletId);
+        // Clip to cropped bounds, delegate to drawAlpha, then restore.
+        int cx = g.getClipX(), cy = g.getClipY(), cw = g.getClipWidth(), ch = g.getClipHeight();
+        g.clipRect(x - ax, y - ay, w, h);
+        boolean ok = drawAlpha(g, bulletId, x, y, alpha);
+        g.setClip(cx, cy, cw, ch);
+        return ok;
+    }
+
     public boolean draw(Graphics g, int bulletId, int x, int y, boolean isFromPlayer) {
         if (!cc.hasSpriteMeta(bulletId)) {
             return false;
