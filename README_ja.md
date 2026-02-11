@@ -53,7 +53,9 @@ CPU ≥ 434 MHz、JVM ヒープ ≥ 2.0 MB のデバイスであれば、Normal 
 
 ## Build
 
-[中文（繁體）](docs/build.md) / [English](docs/build_en.md) / [日本語](docs/build_ja.md)。
+本プロジェクトのビルドにはいかなる IDE も必要なく、ルートディレクトリに同梱されている `build.xml` だけで作業を 100% 完了できます。
+
+[日本語](docs/build_ja.md) | [中文（繁體）](docs/build.md) | [English](docs/build_en.md)
 
 ---
 

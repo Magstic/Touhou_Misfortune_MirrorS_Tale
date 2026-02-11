@@ -59,7 +59,9 @@ KEmulatormod 執行該移植版非常卡頓，且不支援程式內控制 Virtua
 
 ## Build
 
-[中文（繁體）](docs/build.md) / [English](docs/build_en.md) / [日本語](docs/build_ja.md)。
+本專案的建構無須任何 IDE，根路徑下自帶的 `build.xml` 可以完成 100% 的工作。
+
+[中文（繁體）](docs/build.md) | [English](docs/build_en.md) | [日本語](docs/build_ja.md)
 
 ---
 

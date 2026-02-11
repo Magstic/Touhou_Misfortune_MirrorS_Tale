@@ -27,7 +27,7 @@
 5. **[Java ME SDK 3.4](https://www.oracle.com/java/technologies/javame-sdk-downloads.html)**
    - oracle-jmesdk-3-4-rr-win32-bin.exe
    - 預設安裝路徑：`C:\Java_ME_platform_SDK_3.4`
-   - 若安裝在其他路徑，請修改打包腳本中對應的 `wtk.home`
+   - 若安裝在其他路徑，請修改 `build.xml` 中對應的 `wtk.home`
 
 ### Linux
 
@@ -38,7 +38,7 @@
      chmod +x sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
      ./sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
      ```
-   - 若安裝在其他路徑，請修改打包腳本中對應的 `wtk.home`
+   - 若安裝在其他路徑，請修改 `build.xml` 中對應的 `wtk.home`
    - `preverify` 為 32 位元執行檔，64 位元系統需安裝相容函式庫：
      ```bash
      sudo dpkg --add-architecture i386

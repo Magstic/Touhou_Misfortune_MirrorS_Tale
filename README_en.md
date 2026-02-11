@@ -53,7 +53,9 @@ If your device has CPU ≥ 434 MHz and JVM heap ≥ 2.0 MB, you may be able to r
 
 ## Build
 
-[中文（繁體）](docs/build.md) / [English](docs/build_en.md) / [日本語](docs/build_ja.md)。
+The build of this project does not require any IDE — the `build.xml` provided in the project root can complete 100% of the work.
+
+[English](docs/build_en.md) | [日本語](docs/build_ja.md) | [中文（繁體）](docs/build.md) 
 
 ---
 
