@@ -640,13 +640,12 @@ public final class StageClearResultPanel {
     }
 
     static void renderReplayListBackgroundOrFallback(Graphics g, BulletSprites sprites) {
-        Image bg = null;
-        if (sprites != null) {
-            ImageBank imgs = sprites.getImages();
-            if (imgs != null) {
-                bg = imgs.get(18);
-            }
-        }
+        ImageBank imgs = (sprites != null) ? sprites.getImages() : null;
+        renderReplayListBackgroundOrFallback(g, imgs);
+    }
+
+    static void renderReplayListBackgroundOrFallback(Graphics g, ImageBank imgs) {
+        Image bg = (imgs != null) ? imgs.get(18) : null;
         if (bg != null) {
             UiDraw.drawRegion(g, bg, 0, 0, 0, 0, 240, 240);
             UiDraw.fillRectAlpha(g, 0, 0, 240, 240, 0x000000, 96);

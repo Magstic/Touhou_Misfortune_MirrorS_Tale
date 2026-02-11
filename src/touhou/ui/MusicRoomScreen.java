@@ -234,13 +234,10 @@ public final class MusicRoomScreen {
             line2 = UiText.get(TextId.MUSIC_LOCK_LINE2);
         }
 
-        g.setFont(font);
-        g.setColor(0xFFFFFF);
         UiDraw.drawStringPlain(g, font, line0, 15, 176, 0, 0xFFFFFF);
         UiDraw.drawStringPlain(g, font, line1, 15, 195, 0, 0xFFFFFF);
         UiDraw.drawStringPlain(g, font, line2, 15, 210, 0, 0xFFFFFF);
 
-        g.setColor(0xFF3333);
         UiDraw.drawStringPlain(g, font, UiText.get(TextId.MUSIC_VOLUME) + stVolume + UiText.get(TextId.MUSIC_PERCENRAGE), 155, 225, 0, 0xFF3333);
     }
 }

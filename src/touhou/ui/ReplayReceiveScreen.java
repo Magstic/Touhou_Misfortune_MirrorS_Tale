@@ -2,7 +2,6 @@ package touhou.ui;
 
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
-import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.GameCanvas;
 
 import touhou.BulletSprites;
@@ -185,21 +184,7 @@ public final class ReplayReceiveScreen {
             this.imgs = imgs;
         }
 
-        Image bg = (this.imgs != null) ? this.imgs.get(18) : null;
-        if (bg != null) {
-            UiDraw.drawRegion(g, bg, 0, 0, 0, 0, 240, 240);
-            UiDraw.fillRectAlpha(g, 0, 0, 240, 240, 0x000000, 96);
-        } else {
-            g.setColor(0x000000);
-            g.fillRect(0, 0, 240, 240);
-        }
-
-        g.setColor(0x005500);
-        g.drawRect(3, 3, 234, 234);
-        g.setColor(0x00AA00);
-        g.drawRect(6, 6, 228, 228);
-        g.setColor(0x00FF00);
-        g.drawRect(9, 9, 222, 222);
+        StageClearResultPanel.renderReplayListBackgroundOrFallback(g, this.imgs);
 
         UiDraw.drawString2(g, FONT, UiText.get(TextId.BT_RECEIVE_TITLE), 120, 25, 1, 0xFFFFFF, 0x777777);
 

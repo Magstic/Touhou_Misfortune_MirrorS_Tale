@@ -430,7 +430,7 @@ private void renderTopHints(Graphics g) {
 
         int dist = effectA * ((typeMax == 2) ? 14 : 10);
 
-        int color = mixColor(effect8, effect9, effect5, 5);
+        int color = UiDraw.mixColor(effect8, effect9, effect5, 5);
         UiDraw.drawGradationAlpha(g, 0, 120 - dist, 240, dist, color, 0xFFFFFF, 24, 96);
         UiDraw.drawGradationAlpha(g, 0, 120, 240, dist, 0xFFFFFF, color, 24, 96);
     }
@@ -755,26 +755,4 @@ private void renderTopHints(Graphics g) {
         return 0x0000FF;
     }
 
-    private static int mixColor(int c0, int c1, int t, int tMax) {
-        if (t <= 0) {
-            return c1;
-        }
-        if (t >= tMax) {
-            return c0;
-        }
-
-        int r0 = (c0 >> 16) & 0xFF;
-        int g0 = (c0 >> 8) & 0xFF;
-        int b0 = (c0) & 0xFF;
-
-        int r1 = (c1 >> 16) & 0xFF;
-        int g1 = (c1 >> 8) & 0xFF;
-        int b1 = (c1) & 0xFF;
-
-        int inv = tMax - t;
-        int r = (r0 * t + r1 * inv) / tMax;
-        int gg = (g0 * t + g1 * inv) / tMax;
-        int bb = (b0 * t + b1 * inv) / tMax;
-        return (r << 16) | (gg << 8) | bb;
-    }
 }

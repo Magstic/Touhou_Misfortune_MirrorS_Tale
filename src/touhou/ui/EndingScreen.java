@@ -198,7 +198,7 @@ public final class EndingScreen {
             return null;
         }
         String[] lines = I18n.splitLinesSimple(text);
-        return (lines != null) ? lines : null;
+        return lines;
     }
 
     private static int[] buildTextIndexMap(String[] script) {
