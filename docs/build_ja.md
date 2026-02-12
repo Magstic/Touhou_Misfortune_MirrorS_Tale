@@ -22,24 +22,27 @@
 4. **[antenna-bin-1.2.1-beta.jar](https://sourceforge.net/projects/antenna/files/antenna/Antenna%201.2.1-beta/)**
    - ダウンロード後、プロジェクトの `lib/` に配置
 
-### Windows
+### Windows / Linux
 
-5. **[Java ME SDK 3.4](https://www.oracle.com/java/technologies/javame-sdk-downloads.html)**
-   - oracle-jmesdk-3-4-rr-win32-bin.exe
-   - デフォルトのインストールパス：`C:\Java_ME_platform_SDK_3.4`
+5. 以下の**いずれか一つ**をインストールしてください（`build.xml` が自動検出します）：
+
+   - **[Java ME SDK 3.4](https://www.oracle.com/java/technologies/javame-sdk-downloads.html)**（Windows のみ）
+     - oracle-jmesdk-3-4-rr-win32-bin.exe
+     - デフォルトのインストールパス：`C:\Java_ME_platform_SDK_3.4`
+
+   - **[Sun Java Wireless Toolkit 2.5.2](https://www.oracle.com/java/technologies/java-archive-downloads-javame-downloads.html)**（Windows / Linux）
+     - Windows：sun_java_wireless_toolkit-2.5.2_01-win.exe（デフォルトパス：`C:\WTK2.5.2_01`）
+     - Linux：sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh（デフォルトパス：`~/WTK2.5.2`）
+       ```bash
+       chmod +x sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
+       ./sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
+       ```
+
    - 別の場所にインストールした場合は、ビルドスクリプトの `wtk.home` を変更してください
 
-### Linux
+### Linux 追加手順
 
-5. **[Sun Java Wireless Toolkit 2.5.2](https://www.oracle.com/java/technologies/java-archive-downloads-javame-downloads.html)**
-   - sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-   - インストーラを実行（デフォルトパス：`~/WTK2.5.2`）：
-     ```bash
-     chmod +x sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-     ./sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-     ```
-   - 別の場所にインストールした場合は、ビルドスクリプトの `wtk.home` を変更してください
-   - `preverify` は 32 ビットバイナリです。64 ビット環境では互換ライブラリが必要です：
+   - `preverify` は 32 ビットバイナリです。64 ビット環境では互換ライブラリが必要です (Debianを例として)：
      ```bash
      sudo dpkg --add-architecture i386
      sudo apt update
@@ -47,7 +50,11 @@
                       libxt6:i386 libxext6:i386 libx11-6:i386
      ```
 
-> P.S.: `Java ME SDK 3.4` と `Sun Java Wireless Toolkit 2.5.2` のダウンロードには Oracle アカウントが必要です（正直かなり面倒です……信頼できるサードパーティから依存ファイルを入手できれば、インストーラの煩雑さを省けます）。
+---
+
+> NOTE 1: `Java ME SDK 3.4` と `Sun Java Wireless Toolkit 2.5.2` のダウンロードには Oracle アカウントが必要です（正直かなり面倒です……信頼できるサードパーティから依存ファイルを入手できれば、インストーラの煩雑さを省けます）。
+
+> NOTE 2: `Java ME SDK 3.0` も `3.4` の代替として使用できる可能性があります。違いは `preverify` のバージョンのみです。ただし、`build.xml` 内の `wtk.home` を `3.0` のインストールパスに変更する必要があります。
 
 ## ビルドコマンド
 

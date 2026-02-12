@@ -23,11 +23,15 @@
 | Platform | *MIDP 2.0, CLDC 1.1* |  | CPU & RAM | *≥ 434 MHz*, *JVM ≥ 1.5 MB* |
 | Screen | *240 x 240* |  |Optional | *JSR-82（BlueTooth Replay）*|
 
+---
+
 ### PC
 
-カスタマイズ版 [**FreeJ2ME-Plus**](https://github.com/Magstic/freej2me-plus/releases/tag/VirtualMIDISynth) + [**VirtualMIDI Synth**](https://coolsoft.altervista.org/en/virtualmidisynth)（[**Nokia 3110c.SF2**](https://musical-artifacts.com/artifacts/828)）の組み合わせを推奨。Docomo のオリジナルミキシングに最も近い再生環境です（ただし VirtualMIDI Synth は Windows 限定）。
+カスタマイズ版 [**FreeJ2ME-Plus**](https://github.com/Magstic/freej2me-plus/releases/tag/VirtualMIDISynth) + [**VirtualMIDI Synth**](https://coolsoft.altervista.org/en/virtualmidisynth)（[**Nokia 3110c.SF2**](https://musical-artifacts.com/artifacts/828)）の組み合わせを推奨。Docomo のオリジナルミキシングに最も近い再生環境です（ただし VirtualMIDI Synth は Windows 限定）。また、この Fork は移植版の RMS 永続化を正しく実装しています。
 
 KEmulatormod ではこの移植版の動作が非常に重く、アプリ内での VirtualMIDI Synth 音量制御や MIDI のブレークポイント再生にも対応していないため、推奨しません。
+
+---
 
 ### Android
 
@@ -36,6 +40,8 @@ KEmulatormod ではこの移植版の動作が非常に重く、アプリ内で�
 もちろん、ガラスをタップして STG をプレイしたいとは思わないでしょうし、SF2 を使っても Android のミキシングは相変わらずひどいですが lol。
 
 また、JL-MOD の JSR-82 実装にも問題があり、Bluetooth による Replay の送受信が正常に動作しません（J2ME-Loader は受信可能ですが送信不可 — 音質はまた別の話です）。
+
+---
 
 ### Real Device
 
@@ -65,7 +71,7 @@ CPU ≥ 434 MHz、JVM ヒープ ≥ 2.0 MB のデバイスであれば、Normal 
 
 **Keitai Archive** — この作品をアーカイブしてくれた
 
-**ChatGPT 5.2** — コード整理・リファクタリング作業の 99%
+**ChatGPT 5.2** — コード整理・リファクタリング・最終チェック作業の 99%
 
 **Claude 4.6 Opus** — 一部の MD ドキュメントの草案・翻訳、および字形チェック
 
@@ -81,4 +87,4 @@ CPU ≥ 434 MHz、JVM ヒープ ≥ 2.0 MB のデバイスであれば、Normal 
 
 L-Garden の関係者の方で、本プロジェクトの存在を望まない場合は、深くお詫び申し上げます。[ホームページ](https://magstic.art/)の Email からいつでもご連絡ください。
 
-Clone してローカルでビルド・プレイすることは歓迎しますが、**いかなる形式の JAR 再配布も禁止** です。
+### Clone してローカルでビルド・プレイすることは歓迎しますが、**いかなる形式の JAR 再配布も禁止** です。

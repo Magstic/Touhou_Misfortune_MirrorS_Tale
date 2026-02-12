@@ -23,11 +23,15 @@ See [TODO](https://github.com/Magstic/Touhou_Misfortune_MirrorS_Tale/issues/1).
 | Platform | *MIDP 2.0, CLDC 1.1* |  | CPU & RAM | *≥ 434 MHz*, *JVM ≥ 1.5 MB* |
 | Screen | *240 x 240* |  |Optional | *JSR-82 (BlueTooth Replay)*|
 
+---
+
 ### PC
 
-Recommended: customized [**FreeJ2ME-Plus**](https://github.com/Magstic/freej2me-plus/releases/tag/VirtualMIDISynth) + [**VirtualMIDI Synth**](https://coolsoft.altervista.org/en/virtualmidisynth) ([**Nokia 3110c.SF2**](https://musical-artifacts.com/artifacts/828)). This is likely the closest experience to the original Docomo mixing (though VirtualMIDI Synth is Windows-only).
+Recommended: customized [**FreeJ2ME-Plus**](https://github.com/Magstic/freej2me-plus/releases/tag/VirtualMIDISynth) + [**VirtualMIDI Synth**](https://coolsoft.altervista.org/en/virtualmidisynth) ([**Nokia 3110c.SF2**](https://musical-artifacts.com/artifacts/828)). This is likely the closest experience to the original Docomo mixing (though VirtualMIDI Synth is Windows-only). Additionally, this fork correctly implements RMS persistence for the ported version.
 
 KEmulatormod runs this port very poorly and does not support in-app VirtualMIDI Synth volume control or MIDI breakpoint playback — not recommended.
+
+---
 
 ### Android
 
@@ -36,6 +40,8 @@ KEmulatormod runs this port very poorly and does not support in-app VirtualMIDI 
 Of course, I guarantee you won't enjoy playing an STG by tapping glass, let alone the still-garbage mixing on Android even with SF2 lol.
 
 JL-MOD's JSR-82 implementation also has issues, meaning Bluetooth replay send/receive won't work properly (J2ME-Loader can receive but not send — and the sound quality is another story).
+
+---
 
 ### Real Device
 
@@ -65,7 +71,7 @@ The build of this project does not require any IDE — the `build.xml` provided 
 
 **Keitai Archive** — Preserved this title
 
-**ChatGPT 5.2** — 99% of the code cleanup and refactoring work
+**ChatGPT 5.2** — 99% of the code cleanup, refactoring work, and final review
 
 **Claude 4.6 Opus** — Drafting and translation of some MD documents, and glyph verification
 
@@ -81,4 +87,4 @@ This project is a derivative work of "東方氷幻鏡 ～ Misfortune Mirror's Ta
 
 If you are affiliated with L-Garden and do not wish for this project to exist, I sincerely apologize and welcome you to contact me anytime via the Email on my [homepage](https://magstic.art/).
 
-You are welcome to clone and build locally for personal play, but **redistribution of JAR files in any form is strictly prohibited**.
+### You are welcome to clone and build locally for personal play, but **redistribution of JAR files in any form is strictly prohibited**.

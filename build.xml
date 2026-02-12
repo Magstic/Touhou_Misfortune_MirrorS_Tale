@@ -18,13 +18,17 @@
     <!-- ===== External tools (override via -D) ===== -->
     <property name="freej2me.jar"  value="emulator/freej2me.jar"/>
 
-    <!-- ===== Cross-platform WTK detection ===== -->
-    <!-- Windows default: Java ME SDK 3.4;  Linux default: ~/WTK2.5.2    -->
-    <!-- Override with: ant -Dwtk.home=<path>                             -->
-    <condition property="wtk.home" value="${user.home}/WTK2.5.2">
-        <os family="unix"/>
+    <!-- ===== WTK detection (override: ant -Dwtk.home=<path>) ===== -->
+    <!-- First match wins; -D on command line takes highest priority. -->
+    <condition property="wtk.home" value="C:/Java_ME_platform_SDK_3.4">
+        <available file="C:/Java_ME_platform_SDK_3.4" type="dir"/>
     </condition>
-    <property name="wtk.home" value="C:/Java_ME_platform_SDK_3.4"/>
+    <condition property="wtk.home" value="C:/WTK2.5.2_01">
+        <available file="C:/WTK2.5.2_01" type="dir"/>
+    </condition>
+    <condition property="wtk.home" value="${user.home}/WTK2.5.2">
+        <available file="${user.home}/WTK2.5.2" type="dir"/>
+    </condition>
 
     <!-- Antenna reads these implicitly to determine platform version -->
     <property name="wtk.cldc.version" value="1.1"/>

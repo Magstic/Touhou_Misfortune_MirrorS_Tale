@@ -27,9 +27,9 @@
 
 ### PC
 
-推薦使用客製化的 [**FreeJ2ME-Plus**](https://github.com/Magstic/freej2me-plus/releases/tag/VirtualMIDISynth) + [**VirtualMIDI Synth**](https://coolsoft.altervista.org/en/virtualmidisynth)（[**Nokia 3110c.SF2**](https://musical-artifacts.com/artifacts/828)），這可能是最接近 Docomo 混音的遊玩方式（不過 VirtualMIDI Synth 僅限 Windows）。
+推薦使用客製化的 [**FreeJ2ME-Plus**](https://github.com/Magstic/freej2me-plus/releases/tag/VirtualMIDISynth) + [**VirtualMIDI Synth**](https://coolsoft.altervista.org/en/virtualmidisynth)（[**Nokia 3110c.SF2**](https://musical-artifacts.com/artifacts/828)），這可能是最接近 Docomo 混音的遊玩方式（不過 VirtualMIDI Synth 僅限 Windows）。此外，該 Fork 也可正確實現移植版 RMS 的持久化。
 
-KEmulatormod 執行該移植版非常卡頓，且不支援程式內控制 VirtualMIDI Synth 的音量，MIDI 的斷點播放也無法做到，因此並不推薦用來執行該遊戲。
+KEmulatormod 執行該移植版非常卡頓，原因不明，且不支援程式內控制 VirtualMIDI Synth 的音量，MIDI 的斷點播放也無法做到，因此並不推薦用來執行該遊戲。
 
 ---
 
@@ -39,7 +39,7 @@ KEmulatormod 執行該移植版非常卡頓，且不支援程式內控制 Virtua
 
 當然，我保證你不會想戳玻璃 PLAY STG，更不提儘管有 SF2 加持，但混音依然垃圾的 ANDROID lol。
 
-此外，JL-MOD 的 JSR-82 也有問題，這意味著無法正常使用藍牙收發 Replay（J2ME-Loader 可以接收，但無法發送，音質就另當別論了）。
+此外，JL-MOD 的 JSR-82 也有問題，這意味著無法正常使用藍牙收發 Replay（J2ME-Loader 可以接收，但無法發送）。
 
 ---
 
@@ -87,4 +87,4 @@ KEmulatormod 執行該移植版非常卡頓，且不支援程式內控制 Virtua
 
 若您是 L-Garden 所屬，且不希望這種行為，我深感歉意，且隨時歡迎使用 [主頁](https://magstic.art/) 的 Email 聯絡我。
 
-若您有興趣，可 Clone 到本地自行編譯遊玩，但 **禁止任何形式的 JAR 分發**。
+### 若您有興趣，可 Clone 到本地自行編譯遊玩，但 **禁止任何形式的 JAR 分發**。

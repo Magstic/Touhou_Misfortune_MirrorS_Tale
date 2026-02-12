@@ -22,24 +22,27 @@ Install the following software in order (required on both platforms):
 4. **[antenna-bin-1.2.1-beta.jar](https://sourceforge.net/projects/antenna/files/antenna/Antenna%201.2.1-beta/)**
    - Download and place it under the project's `lib/`
 
-### Windows
+### Windows / Linux
 
-5. **[Java ME SDK 3.4](https://www.oracle.com/java/technologies/javame-sdk-downloads.html)**
-   - oracle-jmesdk-3-4-rr-win32-bin.exe
-   - Default install path: `C:\Java_ME_platform_SDK_3.4`
+5. Install **either one** of the following (`build.xml` auto-detects):
+
+   - **[Java ME SDK 3.4](https://www.oracle.com/java/technologies/javame-sdk-downloads.html)** (Windows only)
+     - oracle-jmesdk-3-4-rr-win32-bin.exe
+     - Default install path: `C:\Java_ME_platform_SDK_3.4`
+
+   - **[Sun Java Wireless Toolkit 2.5.2](https://www.oracle.com/java/technologies/java-archive-downloads-javame-downloads.html)** (Windows / Linux)
+     - Windows: sun_java_wireless_toolkit-2.5.2_01-win.exe (default path: `C:\WTK2.5.2_01`)
+     - Linux: sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh (default path: `~/WTK2.5.2`)
+       ```bash
+       chmod +x sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
+       ./sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
+       ```
+
    - If installed elsewhere, update `wtk.home` in the build script accordingly
 
-### Linux
+### Linux Extra
 
-5. **[Sun Java Wireless Toolkit 2.5.2](https://www.oracle.com/java/technologies/java-archive-downloads-javame-downloads.html)**
-   - sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-   - Run the installer (default path: `~/WTK2.5.2`):
-     ```bash
-     chmod +x sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-     ./sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-     ```
-   - If installed elsewhere, update `wtk.home` in the build script accordingly
-   - `preverify` is a 32-bit binary; on 64-bit systems, install the compatibility libraries:
+   - `preverify` is a 32-bit binary; on 64-bit systems, install the compatibility libraries (Using Debian as an exp.):
      ```bash
      sudo dpkg --add-architecture i386
      sudo apt update
@@ -47,7 +50,11 @@ Install the following software in order (required on both platforms):
                       libxt6:i386 libxext6:i386 libx11-6:i386
      ```
 
-> P.S.: Downloading `Java ME SDK 3.4` and `Sun Java Wireless Toolkit 2.5.2` requires an Oracle account (quite a hassle, honestly... if you can obtain the dependencies from a trustworthy third-party source, it saves the trouble of going through the installer).
+---
+
+> NOTE 1: Downloading `Java ME SDK 3.4` and `Sun Java Wireless Toolkit 2.5.2` requires an Oracle account (quite a hassle, honestly... if you can obtain the dependencies from a trustworthy third-party source, it saves the trouble of going through the installer).
+
+> NOTE 2: `Java ME SDK 3.0` may also work as a substitute for `3.4` — the only difference is the version of `preverify` used. However, you will need to update `wtk.home` in `build.xml` to point to the `3.0` installation path.
 
 ## Build Commands
 

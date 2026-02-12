@@ -22,24 +22,27 @@
 4. **[antenna-bin-1.2.1-beta.jar](https://sourceforge.net/projects/antenna/files/antenna/Antenna%201.2.1-beta/)**
    - 下載後放置於專案的 `lib/` 下
 
-### Windows
+### Windows / Linux
 
-5. **[Java ME SDK 3.4](https://www.oracle.com/java/technologies/javame-sdk-downloads.html)**
-   - oracle-jmesdk-3-4-rr-win32-bin.exe
-   - 預設安裝路徑：`C:\Java_ME_platform_SDK_3.4`
+5. 以下兩者 **擇一安裝** 即可（`build.xml` 會自動偵測）：
+
+   - **[Java ME SDK 3.4](https://www.oracle.com/java/technologies/javame-sdk-downloads.html)**（僅 Windows）
+     - oracle-jmesdk-3-4-rr-win32-bin.exe
+     - 預設安裝路徑：`C:\Java_ME_platform_SDK_3.4`
+
+   - **[Sun Java Wireless Toolkit 2.5.2](https://www.oracle.com/java/technologies/java-archive-downloads-javame-downloads.html)**（Windows / Linux）
+     - Windows：sun_java_wireless_toolkit-2.5.2_01-win.exe（預設路徑：`C:\WTK2.5.2_01`）
+     - Linux：sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh（預設路徑：`~/WTK2.5.2`）
+       ```bash
+       chmod +x sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
+       ./sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
+       ```
+
    - 若安裝在其他路徑，請修改 `build.xml` 中對應的 `wtk.home`
 
-### Linux
+### Linux 額外步驟
 
-5. **[Sun Java Wireless Toolkit 2.5.2](https://www.oracle.com/java/technologies/java-archive-downloads-javame-downloads.html)**
-   - sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-   - 執行安裝（預設路徑：`~/WTK2.5.2`）：
-     ```bash
-     chmod +x sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-     ./sun_java_wireless_toolkit-2.5.2_01-linuxi486.bin.sh
-     ```
-   - 若安裝在其他路徑，請修改 `build.xml` 中對應的 `wtk.home`
-   - `preverify` 為 32 位元執行檔，64 位元系統需安裝相容函式庫：
+   - `preverify` 為 32 位元執行檔，64 位元系統需安裝相容函式庫（以 Debian 系為例）：
      ```bash
      sudo dpkg --add-architecture i386
      sudo apt update
@@ -47,7 +50,11 @@
                       libxt6:i386 libxext6:i386 libx11-6:i386
      ```
 
-> P.S.: 下載 `Java ME SDK 3.4` 和 `Sun Java Wireless Toolkit 2.5.2` 時，需要登入 Oracle 賬戶（說實話非常麻煩……如果可以在值得信賴的第三方渠道獲得『散裝』的依賴項，就可以免去安裝的煩瑣了。）。
+---
+
+> NOTE 1: 下載 `Java ME SDK 3.4` 和 `Sun Java Wireless Toolkit 2.5.2` 時，需要登入 Oracle 賬戶（說實話非常麻煩……如果可以在值得信賴的第三方渠道獲得『散裝』的依賴項，就可以免去安裝的煩瑣了。）。
+
+> NOTE 2: `Java ME SDK 3.0` 或許也可以替代 `3.4`，區別僅僅在於 `preverify` 使用的新舊……但，您需要自行修改 `build.xml` 中對應的 `wtk.home` 為 `3.0` 版本的路徑。
 
 ## 建置指令
 

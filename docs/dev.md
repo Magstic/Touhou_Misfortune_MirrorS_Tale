@@ -3,9 +3,14 @@
 ## Environment
 
 - **Visual Studio Code**
-  - JAVA Runtime: Zulu JDK 17 (No joke)
+  - JAVA Runtime: Zulu JDK 17
+    - (No joke, but it doesn't matter — as long as the syntax is correct.)
   - Libraries: `cldc_1.1.jar`, `midp_2.0.jar`, `jsr082_1.1.jar`
 
+
+## Tree
+
+See [Tree](docs/tree.md).
 
 ## Tools
 
