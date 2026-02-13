@@ -2061,11 +2061,8 @@ public final class BulletSystem {
 
             if (dist > 1000) {
                 moveType[i] = 66;
-                if (mt == 79) {
-                    angleDeg[i] = normalizeDeg(ang - 150);
-                } else {
-                    angleDeg[i] = normalizeDeg(ang + 150);
-                }
+                // DoJa effectively applies +150 for both 79 and 80 here.
+                angleDeg[i] = normalizeDeg(ang + 150);
                 delta[i] = 0;
                 animTick[i] = 0;
                 x0[i] = x[i];
