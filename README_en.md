@@ -14,6 +14,8 @@ Includes numerous bug fixes and quality-of-life improvements over the original.
 
 See [TODO](https://github.com/Magstic/Touhou_Misfortune_MirrorS_Tale/issues/1).
 
+To improve compatibility with a wider range of real devices, this project will undergo a rewrite of the sprite clip and the gc system (maybe long time).
+
 ---
 
 ## Play

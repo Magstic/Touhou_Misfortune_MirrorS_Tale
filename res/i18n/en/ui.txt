@@ -457,8 +457,8 @@ Restart
 - Continue -
 Yes
 No
-Remaining 
- left
+left: 
+
 
  Title
 Stage1 Mid
